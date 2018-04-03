@@ -38,6 +38,29 @@ var SimpleJSON= {
 }
 
 /**
+ * UnFlatten a JSON document and return it to it's complex (long) form.
+  * @param {object} data JSON object/doc.
+ */
+JSON.unflattenJSON = function(data) {
+  "use strict";
+  if (Object(data) !== data || Array.isArray(data))
+      return data;
+  var r = {}, k, v, i, last, t;
+  for(var entity in data) {
+      k = r, v = "", last = 0;
+      do {
+          i = entity.indexOf(".", last);
+          t = entity.substring(last, i !== -1 ? i : undefined);
+          k = k[v] || (k[v] = (!isNaN(parseInt(t)) ? [] : {}));
+          v = t;
+          last = i + 1;
+      } while(i >= 0);
+      k[v] = data[entity];
+  }
+  return r[""];
+}
+
+/**
  * Flatten a nested (complex) JSON object down to normalized single entity.
  * Nested items become single entity with lineage.
  * @param {object} data JSON object/doc.
@@ -68,10 +91,17 @@ const flattenJSON = (data) => {
   return r;
 }
 
+
+
 result = flattenJSON(SimpleJSON);
 console.log("Simple JSON")
 console.log("------------")
 console.log(result);
+console.log("------------")
+console.log("Unflatten")
+console.log("------------")
+result = JSON.unflattenJSON(result);
+console.log(result)
 console.log("------------")
 
 var complexJSON = {
@@ -116,15 +146,16 @@ var complexJSON = {
                   "id": "5006", 
                   "type": "Chocolate with Sprinkles" 
                 },
-                { "id": "5003", 
+                { 
+                  "id": "5003", 
                   "type": "Chocolate" 
                 },
-                { "id": "5004", 
-                "type": "Maple" 
+                { 
+                  "id": "5004", 
+                  "type": "Maple" 
                 }
 							]
 					},
-
 				]
 		}
 }
@@ -133,3 +164,8 @@ result = flattenJSON(complexJSON);
 console.log("Complex JSON")
 console.log("------------")
 console.log(result);
+console.log("Unflatten")
+console.log("------------")
+result = JSON.unflattenJSON(result);
+console.log(result)
+console.log("------------")
