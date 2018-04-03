@@ -3,7 +3,7 @@
  * 
  * @package
  */
-var jsonObj= {
+var SimpleJSON= {
   "firstName": "John",
   "lastName": "Adams",
   "id" : 4122,
@@ -50,7 +50,8 @@ const flattenJSON = (data) => {
     } else
     if (Array.isArray(k)) {
       for (i = 0, j = k.length; i < j; i++)
-        traverse(k[i], v);
+      // ensure we have an indices to define subentities.
+        traverse(k[i], v + "[" + i + "]");
       if (j == 0)
         r[v] = [];
     } else {
@@ -67,7 +68,68 @@ const flattenJSON = (data) => {
   return r;
 }
 
-result = flattenJSON(jsonObj);
-console.log("Object")
+result = flattenJSON(SimpleJSON);
+console.log("Simple JSON")
+console.log("------------")
+console.log(result);
+console.log("------------")
+
+var complexJSON = {
+	"items":
+		{
+			"item":
+				[
+					{
+						"id": "0001",
+						"type": "donut",
+						"name": "Cake",
+						"ppu": 0.55,
+						"batters":
+							{
+								"batter":
+									[
+										{ "id": "1001", "type": "Regular" },
+										{ "id": "1002", "type": "Chocolate" },
+										{ "id": "1003", "type": "Blueberry" },
+										{ "id": "1004", "type": "Devil's Food" }
+									]
+							},
+						"topping":
+							[
+                { 
+                  "id": "5001", 
+                  "type": "None" 
+                },
+								{ 
+                  "id": "5002", 
+                  "type": "Glazed" 
+                },
+                { 
+                  "id": "5005", 
+                  "type": "Sugar" 
+                },
+								{ 
+                  "id": "5007", 
+                  "type": "Powdered Sugar" 
+                },
+                { 
+                  "id": "5006", 
+                  "type": "Chocolate with Sprinkles" 
+                },
+                { "id": "5003", 
+                  "type": "Chocolate" 
+                },
+                { "id": "5004", 
+                "type": "Maple" 
+                }
+							]
+					},
+
+				]
+		}
+}
+
+result = flattenJSON(complexJSON);
+console.log("Complex JSON")
 console.log("------------")
 console.log(result);
