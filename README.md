@@ -41,7 +41,7 @@
 ```
 
 ## Final JSON
-`
+```
 { firstName: 'John',
   lastName: 'Adams',
   id: 4122,
@@ -56,4 +56,4 @@
   'contact.social.email': 'johndams@foundingfathers.com',
   'contact.social.medium': '@johnadams',
   'contact.social.github': 'https://www.github.com/jadamsfoundingfather' }
-`
+```
