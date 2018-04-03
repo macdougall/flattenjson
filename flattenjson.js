@@ -71,6 +71,3 @@ result = flattenJSON(jsonObj);
 console.log("Object")
 console.log("------------")
 console.log(result);
-console.log("JSON String")
-console.log("------------")
-
