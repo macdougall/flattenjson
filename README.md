@@ -1,6 +1,7 @@
 # JavaScript to flatten JSON down to a single column entity
 
 * Allows for the normalization of JSON down to a single column entity.
+* Subentities are distinquished by array indicies
 * Helpful for reducing space, speeding up searching, etc.
 
 ## Original JSON
