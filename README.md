@@ -1,6 +1,6 @@
 # JavaScript to flatten JSON down to a single column entity
 
-* Allows for the normalization of complex JSON nesting down to a single column entity.
+* Allows for the normalization of JSON down to a single column entity.
 * Helpful for reducing space, speeding up searching, etc.
 
 ## Original JSON
@@ -11,7 +11,7 @@
   "id" : 4122,
   "address" : {
     "street": "500 Hancock St.", 
-    "city": "Quinch", 
+    "city": "Quincy", 
     "state": "MA", 
     "postalCode": "02169"
   }
